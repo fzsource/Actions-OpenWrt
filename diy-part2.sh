@@ -14,7 +14,6 @@ git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
 # 修改文本
 sed -i 's/"带宽监控"/"宽带"/g' `grep "带宽监控" -rl ./`
 sed -i 's/"Turbo ACC 网络加速"/"Turbo ACC"/g' package/feeds/luci/luci-app-turboacc/po/*/turboacc.po       # `grep "Turbo ACC 网络加速" -rl ./`
-# sed -i 's/"Argon 主题设置"/"主题设置"/g' package/feeds/luci/luci-app-argon-config/po/*/argon-config.po      # `grep "Argon 主题设置" -rl ./`
 
 # 调整 Docker 到 服务 菜单
 # sed -i 's/"admin"/"admin", "services"/g' feeds/luci/applications/luci-app-dockerman/luasrc/controller/*.lua
