@@ -56,6 +56,9 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
+        cd openwrt
+        COMMIT_MESSAGE=$(git show -s --date=short --format="更新内容: %s")
+        echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds 加载自定义源
@@ -129,6 +132,7 @@ jobs:
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         echo "内核版本: ${{ env.KERNEL }}" >> release.txt
+        echo "${COMMIT_MESSAGE}" >> release.txt
 
     - name: Upload firmware to release 上传固件到发布页
       uses: softprops/action-gh-release@master
